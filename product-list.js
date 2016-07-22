@@ -21,7 +21,7 @@ function onDataLoad (e)
   }
 }
 
-function search ()
+function search (text)
 {
   var results = [];
   for (var i=0; i<items.length; i++)
@@ -37,7 +37,6 @@ function search ()
 searchElement.addEventListener("keyup", function(e)
 {
   search(e.target.value);
-  console.log(e);
 });
 
 displayListElement.addEventListener("click", function()
