@@ -16,7 +16,6 @@ function onDataLoad (e)
 {
   if (e.target.status == 200)
   {
-
     items = JSON.parse(e.target.response);
     renderItem();
   }
