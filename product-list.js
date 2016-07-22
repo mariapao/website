@@ -67,7 +67,7 @@ function renderList (list)
     a.href = "product.html?id=" + list[i].id;
     a.innerText = list [i].name;
     item.appendChild(a);
-    containerElement.appendChild(list);
+    containerElement.appendChild(item);
   }
 }
 
@@ -86,7 +86,7 @@ function renderThumbnails (list)
     a.appendChild(img);
     a.appendChild(span);
     item.appendChild(a);
-    containerElement.appendChild(list);
+    containerElement.appendChild(item);
   }
 }
 
