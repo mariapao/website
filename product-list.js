@@ -42,15 +42,15 @@ searchElement.addEventListener("keyup", function(e)
 
 displayListElement.addEventListener("click", function()
 {
-  renderList();
+  renderList(items);
 });
 
 displayThumbnailsElement.addEventListener("click", function()
 {
-  renderThumbnails();
+  renderThumbnails(items);
 });
 
-function render ()
+function render (list)
 {
   display == "list"? renderList(list) : renderThumbnails (list);
 }
