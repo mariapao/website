@@ -9,22 +9,19 @@ xhr.addEventListener("load", onDataLoad);
 xhr.open("GET", "product-data.json");
 xhr.send();
 
+var items = [];
 function onDataLoad (e)
 {
-  alert(e);
-  console.log(e);
+  if (e.target.status == 200)
+  {
+
+    items = JSON.parse(e.target.response);
+    
+    //default product display
+    display == "list"? renderList() : renderThumbnails();
+  }
 }
 
-var items = [];
-items.push({id: 1, name: "Product 1", price: 60, description: "some description", image: "images/product1.jpg"});
-items.push({id: 2, name: "Product 2", price: 460, description: "some description", image: "images/product2.jpg"});
-items.push({id: 3, name: "Product 3", price: 660, description: "some description", image: "images/product3.jpg"});
-items.push({id: 4, name: "Product 4", price: 60, description: "some description", image: "images/product4.jpg"});
-items.push({id: 5, name: "Product 5", price: 460, description: "some description", image: "images/product5.jpg"});
-items.push({id: 6, name: "Product 6", price: 660, description: "some description", image: "images/product6.jpg"});
-
-//default product display
-display == "list"? renderList() : renderThumbnails();
 
 displayList.addEventListener("click", function()
 {

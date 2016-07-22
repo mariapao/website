@@ -5,22 +5,37 @@ var productImage = document.getElementById("product-img");
 var productPrice = document.getElementById("product-price");
 var productPriceOld = document.getElementById("product-price-old");
 
-var items = [];
-items.push({id: 1, name: "Product 1", price: 60, description: "some description", image: "images/product1.jpg"});
-items.push({id: 2, name: "Product 2", price: 460, description: "some description", image: "images/product2.jpg"});
-items.push({id: 3, name: "Product 3", price: 660, description: "some description", image: "images/product3.jpg"});
 
-var item = items [id];
-try
+var xhr = new XMLHttpRequest();
+xhr.addEventListener("load", onDataLoad);
+xhr.open("GET", "product-data.json");
+xhr.send();
+
+var items = [];
+function onDataLoad (e)
 {
-  productName.innerText = item.name;
-  productDescription.innerText = item.description;
-  productImage.src = item.image;
-  productPrice.innerText = "$" + item.price;
+  if (e.target.status == 200)
+  {
+
+    items = JSON.parse(e.target.response);
+    renderItem();
+  }
 }
-catch (e)
+
+function renderItem()
 {
-  productName.innerText = "Product not found";
+  var item = items [id];
+  try
+  {
+    productName.innerText = item.name;
+    productDescription.innerText = item.description;
+    productImage.src = item.image;
+    productPrice.innerText = "$" + item.price;
+  }
+  catch (e)
+  {
+    productName.innerText = "Product not found";
+  }
 }
 
 function getQueryString (field, url)
