@@ -1,9 +1,9 @@
 var display = getQueryString("display");
 
-var container = document.getElementById("product-list");
-var search = document.getElementById("product-search");
-var displayList = document.getElementById("display-list");
-var displayThumbnails = document.getElementById("display-thumbnails");
+var containerElement = document.getElementById("product-list");
+var searchElement = document.getElementById("product-search");
+var displayListElement = document.getElementById("display-list");
+var displayThumbnailsElement = document.getElementById("display-thumbnails");
 
 var xhr = new XMLHttpRequest();
 xhr.addEventListener("load", onDataLoad);
@@ -17,9 +17,7 @@ function onDataLoad (e)
   {
 
     items = JSON.parse(e.target.response);
-
-    //default product display
-    display == "list"? renderList() : renderThumbnails();
+    render(items);
   }
 }
 
@@ -36,18 +34,18 @@ function search ()
   render(results);
 }
 
-searcg.addEventListener("keyup", function(e)
+searchElement.addEventListener("keyup", function(e)
 {
   search(e.target.value);
   console.log(e);
 });
 
-displayList.addEventListener("click", function()
+displayListElement.addEventListener("click", function()
 {
   renderList();
 });
 
-displayThumbnails.addEventListener("click", function()
+displayThumbnailsElement.addEventListener("click", function()
 {
   renderThumbnails();
 });
@@ -56,10 +54,11 @@ function render ()
 {
   display == "list"? renderList(list) : renderThumbnails (list);
 }
+
 function renderList (list)
 {
-  container.className = "";
-  container.innerHTML = null;
+  containerElement.className = "";
+  containerElement.innerHTML = null;
 
   for (var i=0; i<list.length; i++)
   {
@@ -68,14 +67,14 @@ function renderList (list)
     a.href = "product.html?id=" + list[i].id;
     a.innerText = list [i].name;
     item.appendChild(a);
-    container.appendChild(list);
+    containerElement.appendChild(list);
   }
 }
 
 function renderThumbnails (list)
 {
-  container.className = "products-thumbnail";
-  container.innerHTML = null;
+  containerElement.className = "products-thumbnail";
+  containerElement.innerHTML = null;
   for (var i=0; i<list.length ;i++) {
     var item = document.createElement("li");
     var a = document.createElement("a");
@@ -87,7 +86,7 @@ function renderThumbnails (list)
     a.appendChild(img);
     a.appendChild(span);
     item.appendChild(a);
-    container.appendChild(list);
+    containerElement.appendChild(list);
   }
 }
 
