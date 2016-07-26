@@ -1,9 +1,13 @@
-$(document).ready(function()
-{
-  $('.image-popup').magnificPopup(
-    {
-		type: 'image'
-	  });
+$(document).ready(function(){
+  $('.popup-gallery').magnificPopup({
+		delegate: 'a',
+		type: 'image',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0, 1]
+		}
+	});
 });
 
 var id = getQueryString("id") - 1;
